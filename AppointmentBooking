@@ -1,16 +1,16 @@
 function appointmentBooking() {
   //open Spreadsheet
-  var spreadSheetId = '1fSMK4L5jZbOFLT-Pzo7v69KZGzK1b2_vFjKaBoUloNo';
+  var spreadSheetId = 'SSSSSS';  //SSSSSS = Spreadsheet Id
   var ss = SpreadsheetApp.openById(spreadSheetId);
   var sheet = ss.getActiveSheet();
 
   //take sheet info
-  var lastRow = sheet.getLastRow();
-  var lastColumn = sheet.getLastColumn();
+  var lastRow = sheet.getLastRow();  //last row position in the sheet
+  var lastColumn = sheet.getLastColumn();  //last column position in the sheet
 
   //check
-  //console.log(lastRow);
-  //console.log(lastColumn);
+  //console.log(lastRow);  
+  //console.log(lastColumn);  
 
   //take appointment info
   var name = sheet.getRange(lastRow,3).getValue();
@@ -32,7 +32,7 @@ function appointmentBooking() {
   //console.log(dateString)
 
   //create event
-  var calendar = CalendarApp.getCalendarById("c_bm51453bfle4i56nm65romects@group.calendar.google.com");
+  var calendar = CalendarApp.getCalendarById("CCCCCC");  //CCCCCC = Google Calendar Id
   var title = subject + " tutor Appointment for " + name + ", " + studentId;
   var descriptions = "The appointment will be on " + dateString;
   calendar.createEvent(title, date, endDate, {description: descriptions, guests: gEmail}).setVisibility(CalendarApp.Visibility.PRIVATE);
