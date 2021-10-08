@@ -1,0 +1,49 @@
+function appointmentBooking() {
+  //open Spreadsheet
+  var spreadSheetId = '1fSMK4L5jZbOFLT-Pzo7v69KZGzK1b2_vFjKaBoUloNo';
+  var ss = SpreadsheetApp.openById(spreadSheetId);
+  var sheet = ss.getActiveSheet();
+
+  //take sheet info
+  var lastRow = sheet.getLastRow();
+  var lastColumn = sheet.getLastColumn();
+
+  //check
+  //console.log(lastRow);
+  //console.log(lastColumn);
+
+  //take appointment info
+  var name = sheet.getRange(lastRow,3).getValue();
+  var studentId = sheet.getRange(lastRow,4).getValue();
+  var subject = sheet.getRange(lastRow,5).getValue();
+  var gEmail = sheet.getRange(lastRow,2).getValue();
+  var date = new Date(sheet.getRange(lastRow,lastColumn).getValue());
+  var endDate = new Date(date);
+  this.endDate = endDate.setHours(date.getHours() + 1);
+  var dateString = sheet.getRange(lastRow, lastColumn).getDisplayValue();
+
+  //check
+  //console.log(name);
+  //console.log(studentId);
+  //console.log(subject);
+  //console.log(gEmail);
+  //console.log(date);
+  //console.log(endDate);
+  //console.log(dateString)
+
+  //create event
+  var calendar = CalendarApp.getCalendarById("c_bm51453bfle4i56nm65romects@group.calendar.google.com");
+  var title = subject + " tutor Appointment for " + name + ", " + studentId;
+  var descriptions = "The appointment will be on " + dateString;
+  calendar.createEvent(title, date, endDate, {description: descriptions, guests: gEmail}).setVisibility(CalendarApp.Visibility.PRIVATE);
+
+  //check
+  //console.log(descriptions)
+
+  //create variables for sending email
+  var emailSubject = subject + " Tutor Appointment";
+  var bodyText = "The appointment will be on "+ dateString;
+
+  //send email
+  GmailApp.sendEmail(gEmail , emailSubject, bodyText);
+}
