@@ -9,4 +9,5 @@ Websites I used:
   - https://stackoverflow.com/questions/25174219/convert-a-string-to-date-in-google-apps-script/25175356
 
 Method: 
+
   Google Form --> Google Sheet --> Auto Create Event with Appscript
